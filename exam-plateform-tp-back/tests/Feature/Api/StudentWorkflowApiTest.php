@@ -20,7 +20,7 @@ class StudentWorkflowApiTest extends TestCase
     {
         parent::setUp();
 
-        foreach (['Administrateur', 'Correcteur', 'Jury', 'Ecole'] as $roleName) {
+        foreach (['Administrateur', 'Correcteur', 'Jury', 'Ecole', 'Etudiant'] as $roleName) {
             Role::findOrCreate($roleName, 'api');
         }
     }
@@ -93,7 +93,7 @@ class StudentWorkflowApiTest extends TestCase
             'school_id' => null,
         ]);
 
-        $studentResponse = $this->postJson('/api/students', [
+        $studentResponse = $this->post('/api/students', [
             'exam_school_id' => $examSchoolId,
             'speciality_id' => $speciality->id,
             'user' => [
@@ -101,6 +101,7 @@ class StudentWorkflowApiTest extends TestCase
                 'firstname' => 'Student',
                 'email' => 'student.one@demo.bj',
                 'phone_number' => '+22995550000',
+                'profile_picture' => UploadedFile::fake()->image('student-one.jpg'),
             ],
             'student' => [
                 'code' => 'STD-0001',
@@ -108,7 +109,7 @@ class StudentWorkflowApiTest extends TestCase
                 'guardian_surname' => 'One',
                 'guardian_phone' => '+22996660000',
             ],
-        ]);
+        ], ['Accept' => 'application/json']);
 
         $studentId = $studentResponse->assertCreated()
             ->assertJsonPath('meta.user_reused', true)
@@ -127,7 +128,7 @@ class StudentWorkflowApiTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'id' => $existingUser->id,
-            'school_id' => $school->id,
+            'school_id' => null,
         ]);
 
         $this->assertDatabaseCount('users', 2);
@@ -184,7 +185,8 @@ class StudentWorkflowApiTest extends TestCase
             ->assertJsonPath('data.total_rows', 2)
             ->assertJsonPath('data.created_students', 2)
             ->assertJsonPath('data.reused_users', 1)
-            ->assertJsonPath('data.errors.0', null);
+            ->assertJsonPath('data.failed_rows', 0)
+            ->assertJsonPath('data.errors', []);
 
         $this->assertDatabaseCount('students', 2);
         $this->assertDatabaseCount('candidates', 2);

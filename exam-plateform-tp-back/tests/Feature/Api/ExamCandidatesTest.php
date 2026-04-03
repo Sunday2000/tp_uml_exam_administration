@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\TestCenter;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class ExamCandidatesTest extends TestCase
@@ -22,6 +23,7 @@ class ExamCandidatesTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
+        Passport::actingAs($this->user);
     }
 
     public function test_exam_show_returns_candidates_and_schools(): void
