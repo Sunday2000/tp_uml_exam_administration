@@ -190,7 +190,7 @@ class PlatformManagementTest extends TestCase
     }
 
     #[Test]
-    public function user_api_cannot_create_ecole_role(): void
+    public function user_api_can_create_ecole_role(): void
     {
         $this->authenticate();
 
@@ -201,8 +201,12 @@ class PlatformManagementTest extends TestCase
             'password' => 'password123',
             'password_confirmation' => 'password123',
             'role' => 'Ecole',
-        ])->assertStatus(422)
-            ->assertJsonValidationErrors(['role']);
+        ])->assertCreated()
+            ->assertJsonPath('data.email', 'owner@ecole.bj');
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'owner@ecole.bj',
+        ]);
     }
 
     #[Test]

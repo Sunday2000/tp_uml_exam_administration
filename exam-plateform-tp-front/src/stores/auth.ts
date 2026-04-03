@@ -9,6 +9,7 @@ import {
     appendAuthTrace,
     clearPendingOtpEmail,
     clearStoredSession,
+    clearAuthTraces,
     getPendingOtpEmail,
     getStoredSession,
     setPendingOtpEmail,
@@ -268,6 +269,7 @@ export const useAuthStore = defineStore('auth', {
       this.pendingOtpEmail = null
       clearStoredSession()
       clearPendingOtpEmail()
+      clearAuthTraces()
       delete authApi.defaults.headers.common.Authorization
     },
   },
