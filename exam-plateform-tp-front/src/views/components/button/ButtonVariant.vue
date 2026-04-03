@@ -1,0 +1,40 @@
+<template>
+  <div class="d-flex flex-wrap gap-4">
+    <VBtn
+      color="primary"
+      variant="elevated"
+    >
+      Elevated
+    </VBtn>
+    <VBtn
+      color="secondary"
+      variant="flat"
+    >
+      Flat
+    </VBtn>
+    <VBtn
+      color="success"
+      variant="tonal"
+    >
+      Tonal
+    </VBtn>
+    <VBtn
+      color="warning"
+      variant="outlined"
+    >
+      Outlined
+    </VBtn>
+    <VBtn
+      color="info"
+      variant="text"
+    >
+      Text
+    </VBtn>
+    <VBtn
+      color="error"
+      variant="plain"
+    >
+      Plain
+    </VBtn>
+  </div>
+</template>

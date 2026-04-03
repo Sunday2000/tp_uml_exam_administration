@@ -1,0 +1,9 @@
+<template>
+  <VTextarea
+    class="mx-2"
+    label="prepend-icon"
+    rows="1"
+    prepend-icon="mdi-comment-outline"
+    append-inner-icon="mdi-bell-outline"
+  />
+</template>

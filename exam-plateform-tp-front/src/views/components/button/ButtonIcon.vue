@@ -1,0 +1,20 @@
+<template>
+  <div class="d-flex flex-wrap gap-4">
+    <VBtn
+      color="primary"
+      icon="mdi-vuetify"
+    />
+    <VBtn
+      color="secondary"
+      icon="mdi-plus"
+    />
+    <VBtn
+      icon="mdi-link"
+      color="success"
+    />
+    <VBtn
+      color="warning"
+      icon="mdi-share"
+    />
+  </div>
+</template>

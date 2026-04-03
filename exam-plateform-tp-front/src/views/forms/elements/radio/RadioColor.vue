@@ -1,0 +1,41 @@
+<script setup lang="ts">
+const ex8 = ref('primary')
+</script>
+
+<template>
+  <VRadioGroup
+    v-model="ex8"
+    inline
+  >
+    <VRadio
+      label="primary"
+      color="primary"
+      value="primary"
+    />
+    <VRadio
+      label="secondary"
+      color="secondary"
+      value="secondary"
+    />
+    <VRadio
+      label="success"
+      color="success"
+      value="success"
+    />
+    <VRadio
+      label="info"
+      color="info"
+      value="info"
+    />
+    <VRadio
+      label="warning"
+      color="warning"
+      value="warning"
+    />
+    <VRadio
+      label="error"
+      color="error"
+      value="error"
+    />
+  </VRadioGroup>
+</template>

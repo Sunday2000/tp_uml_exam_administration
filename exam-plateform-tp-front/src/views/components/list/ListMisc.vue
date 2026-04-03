@@ -1,0 +1,72 @@
+<template>
+  <VList lines="three">
+    <VListSubheader>User Controls</VListSubheader>
+
+    <VListItem>
+      <VListItemTitle>Content filtering</VListItemTitle>
+
+      <VListItemSubtitle>
+        Set the content filtering level to restrict appts that can be downloaded
+      </VListItemSubtitle>
+    </VListItem>
+
+    <VListItem>
+      <VListItemTitle>Password</VListItemTitle>
+
+      <VListItemSubtitle>
+        Require password for purchase or use password to restrict purchase
+      </VListItemSubtitle>
+    </VListItem>
+  </VList>
+
+  <VDivider />
+
+  <VList
+    lines="three"
+    select-strategy="classic"
+  >
+    <VListSubheader>General</VListSubheader>
+
+    <VListItem value="notifications">
+      <template #prepend="{ isActive }">
+        <VListItemAction start>
+          <VCheckboxBtn :model-value="isActive" />
+        </VListItemAction>
+      </template>
+
+      <VListItemTitle>Notifications</VListItemTitle>
+
+      <VListItemSubtitle>
+        Notify me about updates to apps or games that I downloaded
+      </VListItemSubtitle>
+    </VListItem>
+
+    <VListItem value="sound">
+      <template #prepend="{ isActive }">
+        <VListItemAction start>
+          <VCheckboxBtn :model-value="isActive" />
+        </VListItemAction>
+      </template>
+
+      <VListItemTitle>Sound</VListItemTitle>
+
+      <VListItemSubtitle>
+        Auto-update apps at any time. Data charges may apply
+      </VListItemSubtitle>
+    </VListItem>
+
+    <VListItem value="widgets">
+      <template #prepend="{ isActive }">
+        <VListItemAction start>
+          <VCheckboxBtn :model-value="isActive" />
+        </VListItemAction>
+      </template>
+
+      <VListItemTitle>Auto-add widgets</VListItemTitle>
+
+      <VListItemSubtitle>
+        Automatically add home screen widgets when downloads complete
+      </VListItemSubtitle>
+    </VListItem>
+  </VList>
+</template>
