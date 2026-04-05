@@ -22,7 +22,7 @@ class OtpMail extends Mailable
     {
         return new Envelope(
             subject: 'Votre code de vérification - Plateforme d\'Examens',
-            //cc: [new Address('kodononmahuwanu@gmail.com')],
+            //cc: [new Address('kodonoumahuwanu@gmail.com')],
         );
     }
 
