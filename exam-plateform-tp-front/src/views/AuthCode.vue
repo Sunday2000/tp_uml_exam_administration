@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import api from '@/api/axios'
 import authBgDark from '@/assets/pages/auth-bg-dark.svg'
 import authBgLight from '@/assets/pages/auth-bg-light.svg'
 import authLoginImg from '@/assets/pages/working-desk-with-laptop.png'
@@ -16,6 +17,19 @@ const otpCode = ref('')
 const loading = ref(false)
 const errorMessage = ref('')
 const successMessage = ref('')
+
+// ── [TEST ONLY - À SUPPRIMER] ─────────────────────────────────────────────────
+const devOtpCode = ref<string | null>(null)
+const fetchDevOtp = async () => {
+  if (!email.value) return
+  try {
+    const { data } = await api.get(`/auth/otp?email=${encodeURIComponent(email.value)}`)
+    devOtpCode.value = data?.code ?? data?.otp ?? data?.data?.code ?? JSON.stringify(data)
+  } catch (e: any) {
+    devOtpCode.value = e?.response?.data?.code ?? e?.response?.data?.otp ?? '(erreur: ' + (e?.message ?? 'inconnue') + ')'
+  }
+}
+onMounted(() => { fetchDevOtp() })
 
 const email = computed(() => (route.query.email as string) || authStore.pendingOtpEmail || '')
 
@@ -124,6 +138,17 @@ const restartLogin = () => {
             class="mb-6"
           >
             <p class="mb-1">{{ successMessage }}</p>
+          </VAlert>
+
+          <!-- [TEST ONLY - À SUPPRIMER] -->
+          <VAlert
+            v-if="devOtpCode !== null"
+            color="warning"
+            variant="tonal"
+            icon="mdi-bug-outline"
+            class="mb-6"
+          >
+            <strong>[TEST]</strong> Code OTP : <strong>{{ devOtpCode }}</strong>
           </VAlert>
 
           <VForm @submit.prevent="verifyCode">

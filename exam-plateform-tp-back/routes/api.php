@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CandidateAssignmentController;
+use App\Http\Controllers\Api\OtpController;
 use App\Http\Controllers\Api\CandidateSubjectController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\ExamSchoolController;
@@ -31,6 +32,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
     Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
     Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
     Route::post('register-school', [AuthController::class, 'registerSchool'])->name('register-school');
+    Route::get('otp', [OtpController::class, 'show'])->name('otp');
 
     // Routes protégées par Passport
     Route::middleware('auth:api')->group(function () {
