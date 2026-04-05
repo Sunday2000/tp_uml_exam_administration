@@ -9,7 +9,6 @@ import {
     appendAuthTrace,
     clearPendingOtpEmail,
     clearStoredSession,
-    clearAuthTraces,
     getPendingOtpEmail,
     getStoredSession,
     setPendingOtpEmail,
@@ -45,7 +44,7 @@ interface AuthState {
   session: StoredSession | null
   pendingOtpEmail: string | null
   loading: boolean,
-  role?: Role
+  role?: Role | null
 }
 
 const resolveRoleDashboard = (roles?: string[]): { name: string } => {
@@ -266,10 +265,10 @@ export const useAuthStore = defineStore('auth', {
 
     clearSession() {
       this.session = null
+      this.role = null
       this.pendingOtpEmail = null
       clearStoredSession()
       clearPendingOtpEmail()
-      clearAuthTraces()
       delete authApi.defaults.headers.common.Authorization
     },
   },
