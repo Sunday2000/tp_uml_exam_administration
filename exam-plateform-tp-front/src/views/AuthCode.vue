@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import api from '@/api/axios'
 import authBgDark from '@/assets/pages/auth-bg-dark.svg'
 import authBgLight from '@/assets/pages/auth-bg-light.svg'
 import authLoginImg from '@/assets/pages/working-desk-with-laptop.png'
 import Logo from '@/components/Logo.vue'
-import api from '@/api/axios'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
